@@ -263,11 +263,11 @@ js3 = (function( curiemap, propertymap, api ) {
       importArray: function(a) { while( a.length > 0) { this.add(a.pop()) } },
       get: function(index) { return this.graph[index] },
       add: function(triple) {
-        if(!this.index[triple.subject.value]) this.index[triple.subject.value] = {};
-        if(!this.index[triple.subject.value][triple.property.value]) this.index[triple.subject.value][triple.property.value] = [];
-        if(this.index[triple.subject.value][triple.property.value].some(function(o){return o.equals(triple.object)})) return;
+        if(!this.index[triple.subject]) this.index[triple.subject] = {};
+        if(!this.index[triple.subject][triple.property]) this.index[triple.subject][triple.property] = [];
+        if(this.index[triple.subject][triple.property].some(function(o){return o.equals(triple.object)})) return;
         this.length++;
-        this.index[triple.subject.value][triple.property.value].push(triple.object);
+        this.index[triple.subject][triple.property].push(triple.object);
         this.graph.push(triple);
       },
       merge: function(s) {
